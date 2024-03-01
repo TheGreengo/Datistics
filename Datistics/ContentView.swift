@@ -1,8 +1,5 @@
 import SwiftUI
 
-// TODO: Make the spacers actually work with the textfield or make the textfield less wide
-
-
 struct MainView: View {
     @State private var command: String = ""
 
