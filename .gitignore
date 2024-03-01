@@ -2,3 +2,5 @@ Datistics.xcodeproj/
 Datistics/Datistics.entitlements
 Datistics/Preview\ Content/
 Datistics/Assets.xcassets
+.DS_Store
+proj.md
