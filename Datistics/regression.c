@@ -10,7 +10,15 @@
 
 // a' * b = c
 void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols) {
-    return;
+    for (int i = 0; i < cols; i++) {
+        for (int j = 0; j < cols; j++) {
+            double num = 0.0;
+            for (int k = 0; k < rows; k++) {
+                num += (x[k][i] * x[k][j]);
+            }
+            res[i][j] = num;
+        }
+    }
 }
 
 double mat_det(double ** mat){
@@ -107,10 +115,6 @@ int main(void) {
 
     reg(f, e, g, 3, 3);
 
-    mat_dest(&e, 3);
-    free(f);
-    free(g);
-
     double ** a;
     mat_init(&a, 3, 3);
     for (int i = 0; i < 3; i ++) {
@@ -118,6 +122,15 @@ int main(void) {
         a[i][1] = test_a[i][1];
         a[i][2] = test_a[i][2];
     }
+
+    x_prime_x(a, e, 3, 3);
+
+    mat_print(e, 3, 3);
+
     mat_print(a, 3, 3);
     mat_dest(&a, 3);
+
+    mat_dest(&e, 3);
+    free(f);
+    free(g);
 }
