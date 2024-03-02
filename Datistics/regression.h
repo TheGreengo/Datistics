@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-void reg(double ** y, double ** x, double ** b, unsigned int rows, unsigned int cols);
+void reg(double * y, double ** x, double * beta, unsigned int ents, unsigned int vars);
 
 #endif /* regression_h */
