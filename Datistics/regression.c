@@ -20,53 +20,53 @@
 * x should be 
 * B = (X'X)^{-1}X'Y
 */
-void reg(double * y, double ** x, double * b, unsigned int ents, unsigned int vars) {
+void reg(double * y, double ** x, double * beta, unsigned int ents, unsigned int vars) {
     // * initializing and making the swap matrices
-    double ** a, c;
+    double ** a, ** b;
+    double * c;
     mat_init(&a, vars, vars);
-    mat_init(&c, vars, 1);
+    mat_init(&b, vars, vars);
+    c = malloc(sizeof(double) * vars);
 
     // * make the c = X'X
-    mat_t_mult(&x, &x, &c);
+    x_prime_x(x, a, ents, vars);
 
     // * make a = c^{-1}
-    mat_inv(&c, &a);
+    mat_inv(a, b, vars);
 
     // * make c = X'Y
-    mat_t_mult(&x, &y, &c);
+    x_prime_y(x, y, c, ents, vars);
 
     // * make b = (X'X)^{-1}X'Y
-    mat_mult(&a, &c, &b);
+    fin_mult(b, c, beta, ents, vars);
 
     // * clean up temps
-    mat_dest(&a, vars);
-    mat_dest(&c, vars);
-    // we need to mult(inv(mult(tran(x),x))mat_mult(tran(x),y))
-}
-
-// a * b = c
-void mat_mult(double *** a, double *** b, double *** c) {
-    return a;
+    mat_dest(a, vars);
+    mat_dest(c, vars);
 }
 
 // a' * b = c
-void mat_t_mult(double *** a, double *** b, double *** c) {
-    return a;
-}
-
-// mat' = res
-void mat_tran(double *** mat, double *** res){
-    return mat;
-}
-
-
-double mat_det(double *** mat){
-    return 3;
+void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols) {
+    return;
 }
 
 // mat^{-1} = res
-int mat_inv(double *** mat, double *** res){
-    return 3;
+void mat_inv(double ** mat, double ** res, unsigned int siz){
+    return;
+}
+
+// a' * b = c
+void x_prime_y(double ** x, double ** y, double ** res, unsigned int rows, unsigned int cols) {
+    return;
+}
+
+// a * b = c
+void fin_mult(double ** b, double * c, double ** beta, unsigned int rows, unsigned int cols) {
+    return;
+}
+
+double mat_det(double ** mat){
+    return;
 }
 
 void mat_print(double ** mat, unsigned int rows, unsigned int cols) {
