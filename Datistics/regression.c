@@ -32,7 +32,13 @@ void mat_inv(double ** mat, double ** res, unsigned int siz){
 
 // a' * b = c
 void x_prime_y(double ** x, double * y, double * res, unsigned int rows, unsigned int cols) {
-    return;
+    for (int i = 0; i < cols; i++) {
+        double num = 0.0;
+        for (int j = 0; j < rows; j++) {
+            num += (y[j] * x[j][i]);
+        }
+        res[i] = num;
+    }
 }
 
 // a * b = c
@@ -122,8 +128,16 @@ int main(void) {
         a[i][1] = test_a[i][1];
         a[i][2] = test_a[i][2];
     }
+    for (int i = 0; i < 3; i ++) {
+        f[i] = i+1;
+    }
 
     x_prime_x(a, e, 3, 3);
+    x_prime_y(a, f, g, 3, 3);
+
+    for (int i = 0; i < 3; i ++) {
+        printf("%f \n", g[i]);
+    }
 
     mat_print(e, 3, 3);
 
