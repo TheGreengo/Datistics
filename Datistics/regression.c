@@ -21,12 +21,16 @@ void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols)
     }
 }
 
-double mat_det(double ** mat){
+double mat_det(double ** mat, unsigned int siz){
     return 0.0;
 }
 
 // mat^{-1} = res
 void mat_inv(double ** mat, double ** res, unsigned int siz){
+    // get determinate
+    double det = mat_det(mat, siz);
+
+    // get adjoint
     return;
 }
 
