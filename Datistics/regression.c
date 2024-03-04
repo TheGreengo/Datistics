@@ -21,8 +21,30 @@ void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols)
     }
 }
 
+// I think that here we need to 
 double mat_det(double ** mat, unsigned int siz){
-    return 0.0;
+    int swap = 1;
+
+    for (int i = 0; i < siz; i++) {
+        int ind = i;
+        while (mat[i][ind] == 0) {
+            ind++;
+        }
+        if (ind != i) {
+            // swap the two rows
+            swap *= -1;
+        }
+        // here we loop through the the remaining rows
+        // and first get the coefficient
+        // then update each entry 
+    }
+
+    int final = 1;
+    for (int i = 0; i < siz; i++) {
+        final *= mat[i][i];
+    }
+
+    return final * swap;
 }
 
 // mat^{-1} = res
@@ -46,8 +68,15 @@ void x_prime_y(double ** x, double * y, double * res, unsigned int rows, unsigne
 }
 
 // a * b = c
+// ! This is probably broken
 void fin_mult(double ** b, double * c, double * beta, unsigned int rows, unsigned int cols) {
-    return;
+    for (int i = 0; i < cols; i++) {
+        double num = 0.0;
+        for (int j = 0; j < rows; j++) {
+            num += (c[j] * b[i][j]);
+        }
+        beta[i] = num;
+    }
 }
 
 void mat_print(double ** mat, unsigned int rows, unsigned int cols) {
