@@ -24,6 +24,7 @@ void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols)
 // I think that here we need to 
 double mat_det(double ** mat, unsigned int siz){
     int swap = 1;
+    double coef = 1;
 
     for (int i = 0; i < siz; i++) {
         int ind = i;
@@ -35,8 +36,15 @@ double mat_det(double ** mat, unsigned int siz){
             swap *= -1;
         }
         // here we loop through the the remaining rows
-        // and first get the coefficient
-        // then update each entry 
+        for (int j = i + 1; j < siz; j++) {
+            // and first get the coefficient
+            coef = mat[j][i] / mat[i][i];
+
+            // then update each entry 
+            for (int k = i; k < siz; k++ ){
+                mat[j][k] -= (coef * mat[i][k]);
+            }
+        }
     }
 
     int final = 1;
