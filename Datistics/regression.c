@@ -21,7 +21,8 @@ void x_prime_x(double ** x, double ** res, unsigned int rows, unsigned int cols)
     }
 }
 
-// I think that here we need to 
+// look into bareiss algorithm
+// ! This is probably broken
 double mat_det(double ** mat, unsigned int siz){
     int swap = 1;
     double coef = 1;
