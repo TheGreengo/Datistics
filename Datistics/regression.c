@@ -59,7 +59,7 @@ double mat_det(double ** mat, unsigned int siz){
 // mat^{-1} = res
 void mat_inv(double ** mat, double ** res, unsigned int siz){
     // get determinate
-    double det = mat_det(mat, siz);
+    //double det = mat_det(mat, siz);
 
     // get adjoint
     return;

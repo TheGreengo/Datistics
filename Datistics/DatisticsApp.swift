@@ -4,7 +4,7 @@ import SwiftUI
 struct DatisticsApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            DataView()
         }
     }
 }
