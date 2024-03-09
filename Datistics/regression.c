@@ -32,8 +32,16 @@ double mat_det(double ** mat, unsigned int siz){
         while (mat[i][ind] == 0) {
             ind++;
         }
+        // I think that this will properly swap
         if (ind != i) {
-            // swap the two rows
+            double temp[siz];
+            for (int j = 0; j < siz; j++) {
+                temp[siz] = mat[i][j];
+            }
+            for (int j = 0; j < siz; j++) {
+                mat[i][j] = mat[ind][j];
+                mat[ind][j] = temp[siz];
+            }
             swap *= -1;
         }
         // here we loop through the the remaining rows
@@ -58,7 +66,7 @@ double mat_det(double ** mat, unsigned int siz){
 
 // mat^{-1} = res
 void mat_inv(double ** mat, double ** res, unsigned int siz){
-    // get determinate
+    // get into 
     //double det = mat_det(mat, siz);
 
     // get adjoint
