@@ -29,19 +29,28 @@ double mat_det(double ** mat, unsigned int siz){
 
     for (int i = 0; i < siz; i++) {
         int ind = i;
+
+        // First we get the first line that doesn't start with zero
         while (mat[i][ind] == 0) {
             ind++;
+            if (ind == siz) { return 0; }
         }
-        // I think that this will properly swap
+
+        // Swap rows
         if (ind != i) {
+            // first we get a temporary copy of the original row
             double temp[siz];
             for (int j = 0; j < siz; j++) {
                 temp[siz] = mat[i][j];
             }
+
+            // then we swap the values using the temp
             for (int j = 0; j < siz; j++) {
                 mat[i][j] = mat[ind][j];
                 mat[ind][j] = temp[siz];
             }
+
+            // The impact of swapping rows on the determinant
             swap *= -1;
         }
         // here we loop through the the remaining rows
@@ -56,6 +65,7 @@ double mat_det(double ** mat, unsigned int siz){
         }
     }
 
+    // then the determinants is the products of the diagonals
     int final = 1;
     for (int i = 0; i < siz; i++) {
         final *= mat[i][i];
@@ -66,11 +76,55 @@ double mat_det(double ** mat, unsigned int siz){
 
 // mat^{-1} = res
 void mat_inv(double ** mat, double ** res, unsigned int siz){
-    // get into 
-    //double det = mat_det(mat, siz);
+    // rather than figuring out the adjoint, we're going to do the gaussian way
+    int swap = 1;
+    double coef = 1;
 
-    // get adjoint
-    return;
+    for (int i = 0; i < siz; i++) {
+        int ind = i;
+
+        // First we get the first line that doesn't start with zero
+        while (mat[i][ind] == 0) {
+            ind++;
+            if (ind == siz) { return 0; }
+        }
+
+        // Swap rows
+        if (ind != i) {
+            // first we get a temporary copy of the original row
+            double temp[siz];
+            for (int j = 0; j < siz; j++) {
+                temp[siz] = mat[i][j];
+            }
+
+            // then we swap the values using the temp
+            for (int j = 0; j < siz; j++) {
+                mat[i][j] = mat[ind][j];
+                mat[ind][j] = temp[siz];
+            }
+
+            // The impact of swapping rows on the determinant
+            swap *= -1;
+        }
+        // here we loop through the the remaining rows
+        for (int j = i + 1; j < siz; j++) {
+            // and first get the coefficient
+            coef = mat[j][i] / mat[i][i];
+
+            // then update each entry 
+            for (int k = i; k < siz; k++ ){
+                mat[j][k] -= (coef * mat[i][k]);
+            }
+        }
+    }
+
+    // then the determinants is the products of the diagonals
+    int final = 1;
+    for (int i = 0; i < siz; i++) {
+        final *= mat[i][i];
+    }
+
+    return final * swap;
 }
 
 // a' * b = c
