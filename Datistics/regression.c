@@ -80,6 +80,12 @@ void mat_inv(double ** mat, double ** res, unsigned int siz){
     int swap = 1;
     double coef = 1;
 
+    double ** inverse;
+    mat_init(inverse, siz, siz);
+    for (int i = 0; i < siz; i++)
+        for (int j = 0; j < siz; j++)
+            inverse[i][j] = i == j ? 1 : 0;
+
     for (int i = 0; i < siz; i++) {
         int ind = i;
 
